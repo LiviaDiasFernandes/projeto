@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa</title>
+    <style>
+        body{
+            background-color: #DBD7D4;
+            font-family: 'Times New Roman', Times, serif;
+            background-image: url();
+        }
+        h2{
+            text-align: center;
+            background-color: #C98B35;
+            font-family: 'Times New Roman', Times, serif;
+            color: #383D3F;
+        }
+        h1{
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            color: #C98B35;
+            font-size: 40px;
+        }
+        select{
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        form{
+            margin: 5%;
+        }
+        div{
+            width: 40%;
+            margin-left: 30%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pesquisa</h1>
+    <div>
+<form name="submit-to-google-sheet2">    
+    <h2>Quantos anos você tem?</h2>
+    <select name="idade">
+        <option value="dez">Menos de 10 anos.</option>
+        <option value="dezvinte">De 10 a 19 anos.</option>
+        <option value="vintequa">De 20 a 39 anos.</option>
+        <option value="maisqua">Mais de 40 anos.</option>
+    </select>
+
+    <h2>Você possui algum animal de estimação?</h2>
+    <input name="possuipet" type="radio" value="sim" >
+    <label name="possuipet" for="possuipet">
+    Sim.
+    </label>
+    <input name="possuipet" type="radio" value="não" >
+    <label name="possuipet" for="possuipet">
+    Não.
+    </label>
+
+    <h2>Se sim, qual seu animal de estimação?</h2>
+    <input name="qual" type="checkbox" id="inlineCheckbox1" value="não">
+    <label name="qual" for="inlineCheckbox1">Não tenho pet</label>
+    <input name="qual" type="checkbox" id="inlineCheckbox1" value="cachorro">
+    <label name="qual" for="inlineCheckbox1">Cachorro</label>
+    <input name="qual" type="checkbox" id="inlineCheckbox1" value="gato">
+    <label name="qual" for="inlineCheckbox1">Gato</label>
+    <input name="qual" type="checkbox" id="inlineCheckbox1" value="coelho">
+    <label name="qual" for="inlineCheckbox1">Coelho</label>
+    <input name="qual" type="checkbox" id="inlineCheckbox1" value="hamster">
+    <label name="qual" for="inlineCheckbox1">Hamster</label>
+    <input name="qual" type="checkbox" id="inlineCheckbox1" value="outro">
+    <label name="qual" for="inlineCheckbox1">Outro</label>
+
+    <h2>Possui um pet diferente e inusitato? Nos diga qual.</h2>
+    <input name="tipopet" type="text" placeholder="Espécie do seu pet">
+
+    <h2>Qual o principal atrativo de um PetShop, na sua opinião?</h2>
+    <input name="racao" type="checkbox" value="racao" >
+    <label name="racao" for="racao">
+    Variedade de rações
+    </label>
+
+    <input name="brinq" type="checkbox" value="brinq" >
+    <label name="brinq" for="brinq">
+    Brinquedos de interação
+    </label>
+
+    <input name="banho" type="checkbox" value="banho" >
+    <label name="banho" for="banho">
+    Banho e tosa
+    </label>
+
+    <input name="consultaidade" type="checkbox" value="consulta" >
+    <label name="consulta" for="consulta">
+    Consulta com veterinários
+    </label>
+
+    <h2>Deixe aqui sua sugestão.</h2>
+    <input name="sugestao" type="text" placeholder="Mensagem">
+    <button type="submit">Enviar</button>
+</form>
+</div>
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxuGceEE8c9ZyLf2tkQmI-kxTIznhrWgU0CUvQVJJDkeKbkaVh8zbaxTEpaMrzM-YA/exec'
+    const form = document.forms['submit-to-google-sheet2']
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => console.log('Success!', response))
+        .catch(error => console.error('Error!', error.message))
+      form.reset();
+    })
+</script>
+
+</body>
+</html>
